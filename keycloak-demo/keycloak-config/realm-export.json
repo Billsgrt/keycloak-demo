@@ -1,0 +1,56 @@
+{
+  "realm": "devportal",
+  "enabled": true,
+  "displayName": "DevPortal",
+  "sslRequired": "none",
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "accessTokenLifespan": 300,
+  "clients": [
+    {
+      "clientId": "devportal-app",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "redirectUris": [
+        "http://localhost:3000/*",
+        "http://INGRESS_IP/*"
+      ],
+      "webOrigins": [
+        "http://localhost:3000",
+        "http://INGRESS_IP"
+      ],
+      "attributes": {
+        "post.logout.redirect.uris": "http://localhost:3000/*##http://INGRESS_IP/*"
+      }
+    }
+  ],
+  "roles": {
+    "realm": [
+      { "name": "admin", "description": "Full admin access" },
+      { "name": "developer", "description": "Developer access" },
+      { "name": "viewer", "description": "Read-only access" }
+    ]
+  },
+  "users": [
+    {
+      "username": "bilal",
+      "email": "bilal@devportal.com",
+      "firstName": "Mohammed",
+      "lastName": "Bilal",
+      "enabled": true,
+      "credentials": [{ "type": "password", "value": "Demo@1234", "temporary": false }],
+      "realmRoles": ["admin", "developer"]
+    },
+    {
+      "username": "lead",
+      "email": "lead@devportal.com",
+      "firstName": "Tech",
+      "lastName": "Lead",
+      "enabled": true,
+      "credentials": [{ "type": "password", "value": "Lead@1234", "temporary": false }],
+      "realmRoles": ["viewer"]
+    }
+  ]
+}
